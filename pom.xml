@@ -6,7 +6,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.schwarzwaldTech</groupId>
-	<artifactId>adventOfCode2024</artifactId>
+	<artifactId>adventOfCode2025</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 	
@@ -14,7 +14,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
 
-	<name>adventOfCode2024 Solutions</name>
+	<name>adventOfCode2025 Solutions</name>
 
 	<dependencies>
 		<dependency>
