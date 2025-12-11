@@ -10,8 +10,9 @@ import utilities.FileUtility;
 public class Day1 {
 
 	private static File file;
-	protected ArrayList<Long> leftList = new ArrayList<Long>();
-	protected ArrayList<Long> rightList = new ArrayList<Long>();
+	protected ArrayList<Long> turnSequence = new ArrayList<Long>();
+	private int position = 0;
+	public Long dialLocation = 50l;
 
 	public Day1() {
 		URL fileName = getClass().getResource("Input.txt");
@@ -30,41 +31,32 @@ public class Day1 {
 	public void populateInput() {
 		ArrayList<String> inputLines = FileUtility.convertFileToStringArray(file);
 		for (String line : inputLines) {
-			long leftInput = Long.valueOf(line.substring(0, line.indexOf(" ")));
-			long rightInput = Long.valueOf(line.substring(line.indexOf(" ")+1));
-			leftList.add(leftInput);
-			rightList.add(rightInput);
+			long rotate = Long.valueOf(line.substring(1));
+			if(line.startsWith("L")) {
+				rotate*=-1;
+			}
+			turnSequence.add(rotate);
 		}
 	}
-	public void sortBothlists() {
-		Collections.sort(leftList);
-		Collections.sort(rightList);
-	}
-	public Long diffOfListsAtIndex(int index) {
-		sortBothlists();
-		return Math.abs(leftList.get(index) - rightList.get(index));
-	}
-
-	public Long totalDistanceBetweenBothFullLists() {
-		long total = 0;
-		for (int x=0; x<leftList.size(); x++) {
-			total+= diffOfListsAtIndex(x);
+	
+	public Long turnDial() {
+		dialLocation += turnSequence.get(position++);
+		while (dialLocation < 0) {
+			dialLocation+=100;
 		}
-		return total;
-	}
-	public Integer numOfTimesNumIsInRightList(long number) {
-		int total = 0;
-		for (Long elem : rightList) {
-			if(elem==number) { total++; }
+		while (dialLocation >= 100) {
+			dialLocation-=100;
 		}
-		return total;
+		return dialLocation;
 	}
-	public Long getTotalSimilarityScore() {
-		long total = 0;
-		for (Long elem : leftList) {
-			total+=(elem * numOfTimesNumIsInRightList(elem));
+	public Long getNumOfZeroResultsFromAllTurns() {
+		long result = 0;
+		for (Long turn : turnSequence) {
+			if(turnDial()==0) {
+				result++;
+			}
 		}
-		return total;
+		return result;
 	}
-
+	
 }

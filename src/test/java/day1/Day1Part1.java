@@ -18,85 +18,60 @@ public class Day1Part1 {
 		day1 = new Day1(new File(getClass().getResource("SampleInput.txt").getPath()));
 	}
 	
-	@Test 
+	@Test
 	void convertFileToArrayOfCharArrayTest() {
-		ArrayList<Long> expectedLeftList = new ArrayList<Long>();
-		ArrayList<Long> expectedRightList = new ArrayList<Long>();
-		expectedLeftList.add(3l);
-		expectedLeftList.add(4l);
-		expectedLeftList.add(2l);
-		expectedLeftList.add(1l);
-		expectedLeftList.add(3l);
-		expectedLeftList.add(3l);
-		
-		expectedRightList.add(4l);
-		expectedRightList.add(3l);
-		expectedRightList.add(5l);
-		expectedRightList.add(3l);
-		expectedRightList.add(9l);
-		expectedRightList.add(3l);
-		
-		assertEquals(expectedLeftList, day1.leftList);
-		assertEquals(expectedRightList, day1.rightList);
+		ArrayList<Long> expectedTurnSequence = new ArrayList<Long>();
+		expectedTurnSequence.add(-68l);
+		expectedTurnSequence.add(-30l);
+		expectedTurnSequence.add(48l);
+		expectedTurnSequence.add(-5l);
+		expectedTurnSequence.add(60l);
+		expectedTurnSequence.add(-55l);
+		expectedTurnSequence.add(-1l);
+		expectedTurnSequence.add(-99l);
+		expectedTurnSequence.add(14l);
+		expectedTurnSequence.add(-82l);
+		assertEquals(expectedTurnSequence, day1.turnSequence);
+	}
+	
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	void verify_result_from_each_turn() throws Exception {
+//		The dial starts by pointing at 50.
+//		The dial is rotated L68 to point at 82.
+//		The dial is rotated L30 to point at 52.
+//		The dial is rotated R48 to point at 0.
+//		The dial is rotated L5 to point at 95.
+//		The dial is rotated R60 to point at 55.
+//		The dial is rotated L55 to point at 0.
+//		The dial is rotated L1 to point at 99.
+//		The dial is rotated L99 to point at 0.
+//		The dial is rotated R14 to point at 14.
+//		The dial is rotated L82 to point at 32.
+		assertEquals(50l, day1.dialLocation);
+		assertEquals(82l, day1.turnDial());
+		assertEquals(52l, day1.turnDial());
+		assertEquals(0l, day1.turnDial());
+		assertEquals(95l, day1.turnDial());
+		assertEquals(55l, day1.turnDial());
+		assertEquals(0l, day1.turnDial());
+		assertEquals(99l, day1.turnDial());
+		assertEquals(0l, day1.turnDial());
+		assertEquals(14l, day1.turnDial());
+		assertEquals(32l, day1.turnDial());
 	}
 	
 	@Test
-	void can_sort_lists() throws Exception {
-		ArrayList<Long> expectedLeftList = new ArrayList<Long>();
-		ArrayList<Long> expectedRightList = new ArrayList<Long>();
-		expectedLeftList.add(1l);
-		expectedLeftList.add(2l);
-		expectedLeftList.add(3l);
-		expectedLeftList.add(3l);
-		expectedLeftList.add(3l);
-		expectedLeftList.add(4l);
-		
-		expectedRightList.add(3l);
-		expectedRightList.add(3l);
-		expectedRightList.add(3l);
-		expectedRightList.add(4l);
-		expectedRightList.add(5l);
-		expectedRightList.add(9l);
-		
-		day1.sortBothlists();
-		
-		assertEquals(expectedLeftList, day1.leftList);
-		assertEquals(expectedRightList, day1.rightList);
-	}
-	
-	@Test
-	void can_verify_diff_of_first_elements_after_sorting_is_2() throws Exception {
-		assertEquals(2, day1.diffOfListsAtIndex(0));
-	}
-	@Test
-	void can_verify_diff_of_second_elements_after_sorting_is_1() throws Exception {
-		assertEquals(1, day1.diffOfListsAtIndex(1));
-	}
-	@Test
-	void can_verify_diff_of_third_elements_after_sorting_is_0() throws Exception {
-		assertEquals(0, day1.diffOfListsAtIndex(2));
-	}
-	@Test
-	void can_verify_diff_of_fourth_elements_after_sorting_is_1() throws Exception {
-		assertEquals(1, day1.diffOfListsAtIndex(3));
-	}
-	@Test
-	void can_verify_diff_of_fifth_elements_after_sorting_is_2() throws Exception {
-		assertEquals(2, day1.diffOfListsAtIndex(4));
-	}
-	@Test
-	void can_verify_diff_of_sixth_elements_after_sorting_is_4() throws Exception {
-		assertEquals(5, day1.diffOfListsAtIndex(5));
-	}
-
-	@Test
-	void total_distance_apart_for_all_indexes_is_11() throws Exception {
-		assertEquals(11, day1.totalDistanceBetweenBothFullLists());
+	void verify_Sample_answer_is_3() throws Exception {
+		assertEquals(3, day1.getNumOfZeroResultsFromAllTurns());
 	}
 	
 	@Test
 	void part1_answer() throws Exception {
 		day1 = new Day1();
-//		System.out.println(day1.totalDistanceBetweenBothFullLists());
+//		System.out.println(day1.getNumOfZeroResultsFromAllTurns());
+		assertEquals(1052l, day1.getNumOfZeroResultsFromAllTurns());
 	}
 }
