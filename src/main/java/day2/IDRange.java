@@ -63,4 +63,44 @@ public class IDRange {
 		String secondHalf = curID.substring(curID.length()/2);
 		return firstHalf.equals(secondHalf);
 	}
+	
+    public ArrayList<Long> getInvalidIDsBetweenLeftAndRightPart2() {
+    	ArrayList<Long> returnList = new ArrayList<Long>();
+    	for(long curID = left; curID<=right; curID++) {
+    		if(isInvalidIDPart2(String.valueOf(curID))) {
+    			returnList.add(curID);
+    		}
+    	}
+    	return returnList;
+    }
+
+	private boolean isInvalidIDPart2(String curID) {
+        int maxSize = curID.length() / 2;
+
+        for (int size = 1; size <= maxSize; size++) {
+            ArrayList<String> list = new ArrayList<>();
+
+            for (int i = 0; i < curID.length(); i+=size) {
+            	if(i <= (curID.length() - size)) {            		
+            		list.add(curID.substring(i, i + size));
+            	} else {
+            		list.add(curID.substring(i));
+            	}
+            }
+
+            if(allElementsAreSame(list)) {
+            	return true;
+            }
+        }
+		return false;
+	}
+
+	private boolean allElementsAreSame(ArrayList<String> list) {
+		for(int x=0; x<list.size()-1; x++) {
+			if(!list.get(x).equals(list.get(x+1))) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

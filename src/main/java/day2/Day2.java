@@ -44,4 +44,13 @@ public class Day2 {
 		}
 		return sum;
 	}
+	public Long getSumOfAllInvalidIDs_Part2() {
+		long sum=0;
+		for (IDRange idRange : idRanges) {
+			for (Long inalidID : idRange.getInvalidIDsBetweenLeftAndRightPart2()) {
+				sum+=inalidID;
+			}
+		}
+		return sum;
+	}
 }

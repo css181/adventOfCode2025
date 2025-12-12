@@ -92,6 +92,7 @@ public class Day2Part1 {
 	@Test
 	void part1_answer() throws Exception {
 		day2 = new Day2();
-		System.out.println(day2.getSumOfAllInvalidIDs());
+//		System.out.println(day2.getSumOfAllInvalidIDs());
+		assertEquals(23701357374l, day2.getSumOfAllInvalidIDs());
 	}
 }
