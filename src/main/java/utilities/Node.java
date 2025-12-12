@@ -2,11 +2,13 @@ package utilities;
 
 public class Node {
 
+	private Node prev;
 	private long value;
 	private Node next;
 	
-	public Node(long value, Node next) {
+	public Node(long value, Node prev, Node next) {
 		this.value = value;
+		this.prev = prev;
 		this.next = next;
 	}
 	
@@ -19,6 +21,12 @@ public class Node {
 	public void setNext(Node next) {
 		this.next = next;
 	}
+	public Node getPrev() {
+		return prev;
+	}
+	public void setPrev(Node prev) {
+		this.prev = prev;
+	}
 
 	@Override
 	public String toString() {
@@ -26,7 +34,11 @@ public class Node {
 		if(next!=null) {
 			nextValue = next.getValue();
 		}
-		return "{value: " + value + ", next: " + nextValue + "}";
+		long prevValue = -1;
+		if(prev!=null) {
+			prevValue = prev.getValue();
+		}
+		return "{value: " + value + ", prev: " + prevValue + "next: " + nextValue + "}";
 	}
 
     @Override
@@ -46,7 +58,11 @@ public class Node {
         if(this.next==null && other.next!=null) { return false; }
         if(this.next!=null && other.next==null) { return false; }
         if(this.next==null && other.next==null) { return true; }
+        if(this.prev==null && other.prev!=null) { return false; }
+        if(this.prev!=null && other.prev==null) { return false; }
+        if(this.prev==null && other.prev==null) { return true; }
         if(this.getNext().value != (other.getNext().value)) { return false; }
+        if(this.getPrev().value != (other.getPrev().value)) { return false; }
         
         return true;
     }
