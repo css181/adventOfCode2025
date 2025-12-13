@@ -6,7 +6,8 @@ public class Pojo {
 	private boolean isPossible;
 	
 	public Pojo(String inputLine) {
-		//Assign properties from the input line
+		for (Character character : inputLine.toCharArray()) {
+		}
 	}
 	
 	protected int getId() {
