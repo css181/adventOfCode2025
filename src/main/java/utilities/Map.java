@@ -30,6 +30,16 @@ public class Map {
 	public void updateArea(int row, int col, Character newChar) {
 		this.area.get(row).set(col, newChar);
 	}
+	public char getCellValue(int row, int col) {
+		return this.area.get(row).get(col);
+	}
+	public int getHeight() {
+		return this.area.size();
+	}
+	//Assumes equal widths, just grab the first row's width
+	public int getWidth() {
+		return this.area.get(0).size();
+	}
 	
 	@Override
 	public String toString() {
