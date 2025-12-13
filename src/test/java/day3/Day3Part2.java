@@ -33,6 +33,7 @@ public class Day3Part2 {
 	@Test
 	void part2_answer() throws Exception {
 		day3 = new Day3();
-		System.out.println(day3.getSumOfAllHighestJolts(12));
+//		System.out.println(day3.getSumOfAllHighestJolts(12));
+		assertEquals(175304218462560l, day3.getSumOfAllHighestJolts(12));
 	}
 }

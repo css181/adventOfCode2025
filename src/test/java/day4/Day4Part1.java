@@ -39,7 +39,7 @@ public class Day4Part1 {
 	
 	@Test
 	void verify_that_cell_0_2_has_less_than_4_agacents() throws Exception {
-		assertTrue(day4.doesHaveLessThan4Agacents(0,2));
+		assertTrue(day4.doesHaveLessThan4Agacents(day4.map,0,2));
 	}
 	
 	@Test
@@ -56,19 +56,19 @@ public class Day4Part1 {
 				+ ".@@@@@@@@.\n"
 				+ "x.x.@@@.x.\n";
 		
-		assertEquals(expectedArea, day4.markLessThan4AgacentsWithXInMap().toString());
+		assertEquals(expectedArea, day4.markLessThan4AgacentsWithXInMap(day4.map).toString());
 	}
 	
 	@Test
 	void verify_there_are_13_xs_in_Sample() throws Exception {
-		Map newMap = day4.markLessThan4AgacentsWithXInMap();
-		assertEquals(13l, day4.getCountOfAllXsInNewMap(newMap));
+		Map newMap = day4.markLessThan4AgacentsWithXInMap(day4.map);
+		assertEquals(13l, day4.getCountOfAll_thing_InNewMap(newMap, 'x'));
 	}
 	@Test
 	void part1_answer() throws Exception {
 		day4 = new Day4();
-		Map newMap = day4.markLessThan4AgacentsWithXInMap();
+		Map newMap = day4.markLessThan4AgacentsWithXInMap(day4.map);
 //		System.out.println(day4.getCountOfAllXsInNewMap(newMap));
-		assertEquals(1464l, day4.getCountOfAllXsInNewMap(newMap));
+		assertEquals(1464l, day4.getCountOfAll_thing_InNewMap(newMap, 'x'));
 	}
 }

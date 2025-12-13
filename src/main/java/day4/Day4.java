@@ -11,6 +11,7 @@ public class Day4 {
 
 	private static File file;
 	public Map map;
+	public Map finishedMapAfterAllPaperIsAccessed;
 
 	public Day4() {
 		URL fileName = getClass().getResource("Input.txt");
@@ -31,29 +32,30 @@ public class Day4 {
 		map = new Map(area);
 	}
 	
-	public Map markLessThan4AgacentsWithXInMap() {
-		Map newMap = new Map(map.toString(), "\n");
-		for(int row=0; row<map.getHeight(); row++) {
-//			System.out.println("Marking row: " + row + "/" + (map.getHeight()-1));
-			for(int col=0; col<map.getWidth(); col++) {
-				if(isCellPaper(row, col)) {
-					if(doesHaveLessThan4Agacents(row, col)) {
+	public Map markLessThan4AgacentsWithXInMap(Map startMap) {
+		Map newMap = new Map(startMap.toString(), "\n");
+		for(int row=0; row<startMap.getHeight(); row++) {
+			for(int col=0; col<startMap.getWidth(); col++) {
+				if(newMap.getCellValue(row, col)=='x') {
+					newMap.updateArea(row, col, '.');
+				}
+				if(isCellPaper(startMap, row, col)) {
+					if(doesHaveLessThan4Agacents(startMap, row, col)) {
 						newMap.updateArea(row, col, 'x');
 					}
 				}
 			}
 		}
-//		System.out.println("finished new map");
 		return newMap;
 	}
-	public boolean doesHaveLessThan4Agacents(int row, int col) {
+	public boolean doesHaveLessThan4Agacents(Map lookMap, int row, int col) {
 		int numOfAgacents = 0;
 		for(int curRow=row-1; curRow<=row+1; curRow++) {
 			for(int curCol=col-1; curCol<=col+1; curCol++) {
 				if((curRow==row) && (curCol==col)) {
 					//Skip center cell
 				}				
-				else if(isCellPaper(curRow, curCol)) {
+				else if(isCellPaper(lookMap, curRow, curCol)) {
 					numOfAgacents++;
 				}
 			}
@@ -61,21 +63,35 @@ public class Day4 {
 		return (numOfAgacents<4);
 	}
 	
-	private boolean isCellPaper(int row, int col) {
+	private boolean isCellPaper(Map lookMap, int row, int col) {
 		if((row<0) || (row>map.getHeight()-1) || (col<0) || (col>map.getWidth()-1)) {
 			return false;
 		}
-		return (map.getCellValue(row, col)=='@');
+		return (lookMap.getCellValue(row, col)=='@');
 	}
-	public Long getCountOfAllXsInNewMap(Map newMap) {
+	public Long getCountOfAll_thing_InNewMap(Map lookMap, char thing) {
 	    long count = 0;
-		for(int row=0; row<newMap.getHeight(); row++) {
-			for(int col=0; col<newMap.getWidth(); col++) {
-				if(newMap.getCellValue(row, col)=='x') {
+		for(int row=0; row<lookMap.getHeight(); row++) {
+			for(int col=0; col<lookMap.getWidth(); col++) {
+				if(lookMap.getCellValue(row, col)==thing) {
 					count++;
 				}
 			}
 		}
 	    return count;
+	}
+	
+	public Integer getNumOfTicksUntilAllPaperIsAccessed(int maxTicksToLookFor) {
+		Map oldMap = markLessThan4AgacentsWithXInMap(map);
+		int ticks = 0;
+		for(; ticks<maxTicksToLookFor; ticks++) {
+			finishedMapAfterAllPaperIsAccessed = markLessThan4AgacentsWithXInMap(oldMap);
+			if(oldMap.equals(finishedMapAfterAllPaperIsAccessed)) {
+				break;
+			} else {
+				oldMap = finishedMapAfterAllPaperIsAccessed;
+			}
+		}
+		return ticks;
 	}
 }
