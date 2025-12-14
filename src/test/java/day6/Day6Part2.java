@@ -1,4 +1,4 @@
-package innitialDayToCloneFrom;
+package day6;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,13 +8,13 @@ import java.io.File;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class DayXPart2 {
+public class Day6Part2 {
 
-	private Day6 dayX;
+	private Day6 day6;
 	
 	@BeforeEach
 	public void setup() {
-		dayX = new Day6(new File(getClass().getResource("SampleInput.txt").getPath()));
+		day6 = new Day6(new File(getClass().getResource("SampleInput.txt").getPath()));
 	}
 	
 	@Test 
@@ -27,7 +27,7 @@ public class DayXPart2 {
 	
 	@Test
 	void part2_answer() throws Exception {
-		dayX = new Day6();
+		day6 = new Day6();
 //		System.out.println(dayX.getAnswer());
 	}
 }
