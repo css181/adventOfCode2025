@@ -79,6 +79,7 @@ public class Day5Part1 {
 	@Test
 	void part1_answer() throws Exception {
 		day5 = new Day5();
-		System.out.println(day5.getCountOfFreshIDsFromTestList());
+//		System.out.println(day5.getCountOfFreshIDsFromTestList());
+		assertEquals(615, day5.getCountOfFreshIDsFromTestList());
 	}
 }
