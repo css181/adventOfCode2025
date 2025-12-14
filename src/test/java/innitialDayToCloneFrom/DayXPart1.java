@@ -11,11 +11,11 @@ import org.junit.jupiter.api.Test;
 
 public class DayXPart1 {
 
-	private Day6 day1;
+	private DayX day1;
 	
 	@BeforeEach
 	public void setup() {
-		day1 = new Day6(new File(getClass().getResource("SampleInput.txt").getPath()));
+		day1 = new DayX(new File(getClass().getResource("SampleInput.txt").getPath()));
 	}
 	
 	@Test 
@@ -42,7 +42,7 @@ public class DayXPart1 {
 	
 	@Test
 	void part1_answer() throws Exception {
-		day1 = new Day6();
+		day1 = new DayX();
 //		System.out.println(day1.getAnswer());
 	}
 }

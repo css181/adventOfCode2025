@@ -2,23 +2,23 @@ package utilities;
 
 public class Coordinate {
 
-	private long x;
-	private long y;
-	public Coordinate(long x, long y) {
+	private long row;
+	private long col;
+	public Coordinate(long row, long col) {
 		super();
-		this.x = x;
-		this.y = y;
+		this.row = row;
+		this.col = col;
 	}
-	public long getX() {
-		return x;
+	public long getRow() {
+		return row;
 	}
-	public long getY() {
-		return y;
+	public long getCol() {
+		return col;
 	}
 	
 	@Override
     public String toString() {
-    	String print = "(" + x + "," + y + ")";
+    	String print = "(row: " + row + ", col: " + col + ")";
 		return print;
     } 
 	
@@ -35,16 +35,16 @@ public class Coordinate {
         if(!(obj instanceof Coordinate)) { return false; }
         Coordinate other = (Coordinate) obj;
 
-        if(this.x != other.x) { return false; }
-        if(this.y != other.y) { return false; }
+        if(this.row != other.row) { return false; }
+        if(this.col != other.col) { return false; }
         
         return true;
     }
     
 	public Coordinate getDistanceFrom(Coordinate coordB) {
-		return new Coordinate(Math.abs(x-coordB.x), Math.abs(y-coordB.y));
+		return new Coordinate(Math.abs(row-coordB.row), Math.abs(col-coordB.col));
 	}
 	public int getTotalDistanceFrom(Coordinate coordB) {
-		return (int) (Math.abs(x-coordB.x)+ Math.abs(y-coordB.y)); 
+		return (int) (Math.abs(row-coordB.row)+ Math.abs(col-coordB.col)); 
 	}
 }

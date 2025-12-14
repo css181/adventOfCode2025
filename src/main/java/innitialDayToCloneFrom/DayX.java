@@ -6,24 +6,24 @@ import java.util.ArrayList;
 
 import utilities.FileUtility;
 
-public class Day6 {
+public class DayX {
 
 	private static File file;
 	protected ArrayList<Pojo> myList = new ArrayList<Pojo>();
 
-	public Day6() {
+	public DayX() {
 		URL fileName = getClass().getResource("Input.txt");
 		file = new File(fileName.getPath());
 		populateInput();
 	}
-	public Day6(File file) {
+	public DayX(File file) {
 		myList = new ArrayList<Pojo>();
 		setFileToUse(file);
 		populateInput();
 	}
 
 	protected void setFileToUse(File file) {
-		Day6.file = file;
+		DayX.file = file;
 	}
 
 	public void populateInput() {
