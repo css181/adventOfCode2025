@@ -11,6 +11,9 @@ public class Problem {
 		this.numbers = numbers;
 		this.isAddition = isAddition;
 	}
+	public Problem() {
+		
+	}
 	
 	protected ArrayList<Long> getNumbers() {
 		return numbers;
